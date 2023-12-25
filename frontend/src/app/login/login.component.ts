@@ -12,12 +12,13 @@ export class LoginComponent {
 
   username = new FormControl('');
   password = new FormControl('');
+  loginMessage = new FormControl('');
 
   login() {
     if (this.username.value == 'admin' && this.password.value == 'admin') {
-      alert('Login successful!');
+      this.loginMessage.setValue('Login successful!');
     } else {
-      alert('Login failed!');
+      this.loginMessage.setValue('Login failed!');
     }
   }
 

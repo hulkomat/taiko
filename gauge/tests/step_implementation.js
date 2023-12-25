@@ -17,7 +17,8 @@ const {
     text,
     into,
     textBox,
-    evaluate
+    evaluate,
+    button
 } = require('taiko');
 const assert = require("assert");
 const headless = process.env.headless_chrome.toLowerCase() === 'true';
@@ -64,6 +65,28 @@ step("Clear all tasks", async function () {
 
 step("Open todo application", async function () {
     await goto("todo.taiko.dev");
+});
+
+step("open frontend application", async function () {
+    await goto("http://localhost:4200");
+});
+
+step("type in username <username>", async function (username) {
+    await write(username, into(textBox("username")));
+});
+
+step("type in password <password>", async function (password) {
+    await write(password, into(textBox("password")));
+});
+
+step("click login button", async function () {
+    await button("Login").exists().then(async function () {
+        await click(button("Login"));
+    });
+});
+
+step("should see <message>", async function (message) {
+    assert.ok(await text(message).exists(0, 0));
 });
 
 step("Must not have <table>", async function (table) {
