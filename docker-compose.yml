@@ -1,0 +1,40 @@
+version: '3'
+services:
+  database:
+    image: postgres
+    container_name: database
+    read_only: false
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres/create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql:ro
+      - ./data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready -U postgres"]
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=taiko
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/taiko
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - 4200:4200
+    volumes:
+      - ./reverse-proxy/http-taiko.conf.template:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
