@@ -17,3 +17,13 @@ docker compose --env-file=local.env up -d --quiet-pull --wait --force-recreate -
 - `--quiet-pull` reduces the output
 - `--wait` shows you a status screen until all services are healthy
 - `-d` for continue to run even if you close the terminal where you started the command
+
+After starting the docker stack you can run the gauge tests by running the following command:
+
+```sh {"id":"01HJN7AFANY8GS4JC4RCEH3JZE"}
+cd gauge && \
+npm install && \
+npm test
+```
+
+After a runthrough we can see the results when we open the `index.html` in `/gauge/reports/html-report`.

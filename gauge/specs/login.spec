@@ -14,9 +14,19 @@ To execute this specification, use
 * click login button
 * should see "Login failed!"
 
+## Login with missing username
+* type in password "admin"
+* click login button
+* should see "Login failed!"
+
 ## Login with wrong password
 * type in username "admin"
 * type in password "wrong password"
+* click login button
+* should see "Login failed!"
+
+## Login with missing password
+* type in username "admin"
 * click login button
 * should see "Login failed!"
 
