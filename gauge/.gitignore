@@ -10,9 +10,3 @@ reports
 # Gauge - JavaScript node dependencies
 node_modules
 .DS_Store
-
-# Gauge - Screenshots
-Screenshot-*.png
-
-# nvm
-~/.nvm
