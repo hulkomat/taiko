@@ -69,24 +69,29 @@ gauge.customScreenshotWriter = async function () {
 
 step("open frontend application", async function () {
     await goto("http://localhost:4200");
+    gauge.screenshot();
 });
 
 step("type in username <username>", async function (username) {
     await write(username, into(textBox("username")));
+    gauge.screenshot();
 });
 
 step("type in password <password>", async function (password) {
     await write(password, into(textBox("password")));
+    gauge.screenshot();
 });
 
 step("click login button", async function () {
     await button("Login").exists().then(async function () {
         await click(button("Login"));
     });
+    gauge.screenshot();
 });
 
 step("should see <message>", async function (message) {
     assert.ok(await text(message).exists(0, 0));
+    gauge.screenshot();
 });
 
 // step("Must not have <table>", async function (table) {
