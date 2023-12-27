@@ -11,7 +11,7 @@ Taiko for e2e testing. This is going to be a demo project and should show you in
 To run the whole application, with the database, the backend, and the frontend you can use the docker-compose.yml by simply running
 
 ```sh {"id":"01HJJJ2J91E5A4ET7DWXCH5A06"}
-docker compose --env-file=local.env up -d --quiet-pull --wait
+docker compose --env-file=local.env up -d --quiet-pull --wait --force-recreate --remove-orphans
 ```
 
 - `--quiet-pull` reduces the output
