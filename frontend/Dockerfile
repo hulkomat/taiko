@@ -1,17 +1,15 @@
-# Use the official nginx image as the base image
-FROM nginx:alpine
+# Stage 1: Build Angular application
+FROM node:latest AS builder
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
-
-# Copy the build output from the dist folder to the nginx html directory
-COPY dist /srv/www
-
-# COPY default.config /etc/nginx/sites-available/default
-
-EXPOSE 80/tcp
-
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
-
-# Add a healthcheck to ensure the container is healthy
-HEALTHCHECK --interval=30s --timeout=3s \
-    CMD curl -f http://localhost/ || exit 1
+# Stage 2: Run application with Nginx
+FROM nginx:latest
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY default.conf /etc/nginx/conf.d/default.conf
+HEALTHCHECK --interval=30s --timeout=3s CMD curl --fail http://localhost/ || exit 1
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
