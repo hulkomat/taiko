@@ -1,0 +1,6 @@
+# Login with <username> username and <password> password should show <login message>
+* open frontend application
+* type in username <username>
+* type in password <password>
+* click login button
+* should see <login message>
