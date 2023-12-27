@@ -6,7 +6,7 @@ runme:
 
 # taiko
 
-Taiko for e2e testing. This is going to be a demo project and should show you in its final form how to set up [gauge](gauge.org), [taiko](taiko.org) and a simple web application (java, angular) to run behavior driven tests.
+Taiko for e2e testing. This is going to be a demo project and should show you in its final form how to set up [gauge](gauge.org), [taiko](taiko.org) and a simple web application (java, angular) served on nginx to run behavior driven tests.
 
 To run the whole application, with the database, the backend, and the frontend you can use the docker-compose.yml by simply running
 
