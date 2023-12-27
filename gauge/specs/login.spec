@@ -1,5 +1,11 @@
 # Login
 
+Every heading in this file is a scenario.
+Every bulleted point is a step.
+
+To execute this specification, use
+	npm test
+
 * open frontend application
 
 ## Login with wrong username
