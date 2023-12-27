@@ -11,14 +11,14 @@ To execute this specification, use
 ## Login with wrong username
 The list shows (dynamic) input params for the login steps:
 
-| username 	| password 	|
-|-----------|-----------|
-| john doe 	| admin    	|	
-| 4dmin2   	| admin    	|
-| admin&   	| admin    	|
-| sebastian | sebastian |
-| severin 	| severin 	|
-| lars 		| lars 		|
+   |username |password |
+   |---------|---------|
+   |john doe |admin    |
+   |4dmin2   |admin    |
+   |admin&   |admin    |
+   |sebastian|sebastian|
+   |severin  |severin  |
+   |lars     |lars     |
 
 * type in username <username>
 * type in password <password>
@@ -46,7 +46,6 @@ The list shows (dynamic) input params for the login steps:
 * type in password "admin"
 * click login button
 * should see "Login successful!"
-
 
 ## Login scenarios
 * Login with "username" username and "password" password should show "Login failed!"
