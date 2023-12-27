@@ -43,6 +43,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
                   name: first_name
                   type: varchar(255)
                   constraints:

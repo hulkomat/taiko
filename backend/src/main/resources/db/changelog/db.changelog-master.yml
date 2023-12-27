@@ -1,8 +1,7 @@
 databaseChangeLog:
+    - includeAll:
+        path: db/changelog/changes/
+        
     -  preConditions:  
         -  runningAs:  
             username:  postgres
-
-    - include:
-        file: changes/2023-12-17-init.yml
-        relativeToChangelogFile: true
