@@ -2,9 +2,10 @@ package de.selmaier.taiko.users.adapter;
 
 import de.selmaier.taiko.users.core.UserMapper;
 import de.selmaier.taiko.users.core.UserService;
-import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 
@@ -15,8 +16,9 @@ public class UserControllerImpl implements UserController {
   private final UserMapper userMapper;
 
   @Override
-  public List<UserDto> getAllUsers() {
-    return userService.getAllUsers().stream().map(userMapper::toDto).toList();
+  public ResponseEntity<Page<UserDto>> getAllUsers(Pageable pageable) {
+    Page<UserDto> page = userService.getAllUsers(pageable).map(userMapper::toDto);
+    return ResponseEntity.ok(page);
   }
 
   @Override
