@@ -24,7 +24,7 @@ COPY --from=builder /app/build/libs/*.jar ./app.jar
 EXPOSE 8080
 
 # Health check
-HEALTHCHECK --interval=25s --timeout=3s --retries=2 CMD curl -f http://localhost:8080/actuator/health || exit 1
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD curl -f http://localhost:8080/actuator/health || exit 1
 
 # Run the application
 CMD ["java", "-jar", "app.jar"]

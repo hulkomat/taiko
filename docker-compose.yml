@@ -9,8 +9,11 @@ services:
     volumes:
       - ./postgres/create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql:ro
       - ./data:/var/lib/postgresql/data
-    # healthcheck:
-    #   test: ["CMD", "pg_isready -U postgres"]
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -19,6 +22,7 @@ services:
   backend:
     build: ./backend
     container_name: backend
+    restart: on-failure
     ports:
       - 8080:8080
     depends_on:
