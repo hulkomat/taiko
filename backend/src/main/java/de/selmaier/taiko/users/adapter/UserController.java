@@ -1,7 +1,8 @@
 package de.selmaier.taiko.users.adapter;
 
-import java.util.List;
 import java.util.UUID;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public interface UserController {
 
   @GetMapping("/")
-  public List<UserDto> getAllUsers();
+  public ResponseEntity<Page<UserDto>> getAllUsers(@RequestBody Pageable pageable);
 
   @PostMapping("/")
   public ResponseEntity<Void> createUser(UserDto userDto);
