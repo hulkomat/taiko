@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable;
 public interface UserService {
 
   Page<UserDomain> getAllUsers(Pageable pageable);
+
+  UserDomain createUser(UserDomain domain);
 }

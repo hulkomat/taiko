@@ -10,4 +10,8 @@ public interface UserMapper {
   UserDto toDto(UserDomain userDomain);
 
   UserDomain toDomain(UserEntity userEntity);
+
+  UserDomain toDomain(UserDto userDto);
+
+  UserEntity toEntity(UserDomain domain);
 }

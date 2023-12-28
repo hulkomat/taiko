@@ -10,4 +10,6 @@ public interface UserRepository {
   Page<UserDomain> getAllUsers(Pageable pageable);
 
   Optional<UserDomain> findByMail(String mail);
+
+  UserDomain createUser(UserDomain domain);
 }

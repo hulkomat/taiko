@@ -14,4 +14,9 @@ public class UserServiceImpl implements UserService {
   public Page<UserDomain> getAllUsers(Pageable pageable) {
     return userRepository.getAllUsers(pageable);
   }
+
+  @Override
+  public UserDomain createUser(UserDomain domain) {
+    return userRepository.createUser(domain);
+  }
 }
