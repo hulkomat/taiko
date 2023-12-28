@@ -1,4 +1,4 @@
-package de.selmaier.taiko.users;
+package de.selmaier.taiko.users.core;
 
 import de.selmaier.taiko.common.domains.AbstractAuditableDomain;
 import lombok.AllArgsConstructor;
@@ -8,15 +8,14 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 public class UserDomain extends AbstractAuditableDomain {
 
-    private String mail;
-    private String title;
-    private String firstName;
-    private String lastName;
-    
+  private String mail;
+  private String title;
+  private String firstName;
+  private String lastName;
 }

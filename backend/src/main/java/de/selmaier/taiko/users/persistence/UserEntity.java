@@ -1,6 +1,4 @@
-package de.selmaier.taiko.users;
-
-import org.springframework.lang.NonNull;
+package de.selmaier.taiko.users.persistence;
 
 import de.selmaier.taiko.common.entities.AbstractAuditableEntity;
 import jakarta.persistence.Entity;
@@ -8,6 +6,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
+import org.springframework.lang.NonNull;
 
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
@@ -16,12 +15,11 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "users")
 public class UserEntity extends AbstractAuditableEntity {
 
-    @NonNull
-    private String mail;
+  @NonNull private String mail;
 
-    private String title;
+  private String title;
 
-    private String firstName;
+  private String firstName;
 
-    private String lastName;
+  private String lastName;
 }

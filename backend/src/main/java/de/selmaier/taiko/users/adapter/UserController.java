@@ -1,8 +1,8 @@
-package de.selmaier.taiko.users;
+package de.selmaier.taiko.users.adapter;
 
 import java.util.List;
 import java.util.UUID;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,21 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/users")
 public interface UserController {
 
-    @GetMapping("/")
-    public List<UserDto> getAllUsers();
+  @GetMapping("/")
+  public List<UserDto> getAllUsers();
 
-    @PostMapping("/")
-    public UserDto createUser(UserDto userDto);
+  @PostMapping("/")
+  public ResponseEntity<Void> createUser(UserDto userDto);
 
-    @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable @NonNull UUID id);
+  @GetMapping("/{id}")
+  public ResponseEntity<UserDto> getUserById(@PathVariable @NonNull UUID id);
 
-    @PutMapping("/{id}")
-    public UserDto replaceUser(@PathVariable @NonNull UUID id, @RequestBody UserDto userDto);
+  @PutMapping("/{id}")
+  public ResponseEntity<UserDto> replaceUser(
+      @PathVariable @NonNull UUID id, @RequestBody UserDto userDto);
 
-    @PatchMapping("/{id}")
-    public UserDto updateUser(@PathVariable @NonNull UUID id, @RequestBody UserPatchDto userDto);
+  @PatchMapping("/{id}")
+  public ResponseEntity<UserDto> updateUser(
+      @PathVariable @NonNull UUID id, @RequestBody UserPatchDto userDto);
 
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable @NonNull UUID id);
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteUser(@PathVariable @NonNull UUID id);
 }
