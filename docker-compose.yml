@@ -1,6 +1,27 @@
+---
 version: '3'
+
+x-defaults: &service-defaults
+  pull_policy: always
+  privileged: false
+  read_only: true
+  deploy:
+    restart_policy:
+      condition: on-failure
+      delay: 5s
+      max_attempts: 5
+      window: 120s
+  tmpfs:
+    - /tmp
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10m"
+      max-file: "3"
+
 services:
   database:
+    <<: *service-defaults
     image: postgres
     container_name: database
     read_only: false
@@ -15,11 +36,12 @@ services:
       timeout: 5s
       retries: 5
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=taiko
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
 
   backend:
+    <<: *service-defaults
     build: ./backend
     container_name: backend
     restart: on-failure
@@ -28,14 +50,16 @@ services:
     depends_on:
       - database
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/taiko
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=validate
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=${SPRING_JPA_HIBERNATE_DDL_AUTO}
 
   frontend:
+    <<: *service-defaults
     build: ./frontend
     container_name: frontend
+    read_only: false
     ports:
       - 4200:80
     # volumes:
