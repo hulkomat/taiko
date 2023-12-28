@@ -1,13 +1,17 @@
 package de.selmaier.taiko.users.adapter;
 
+import de.selmaier.taiko.users.core.UserDomain;
 import de.selmaier.taiko.users.core.UserMapper;
 import de.selmaier.taiko.users.core.UserService;
+import java.net.URI;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RequiredArgsConstructor
 public class UserControllerImpl implements UserController {
@@ -23,8 +27,18 @@ public class UserControllerImpl implements UserController {
 
   @Override
   public ResponseEntity<Void> createUser(UserDto userDto) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'createUser'");
+    if (ObjectUtils.isEmpty(userDto.mail())) {
+      return ResponseEntity.badRequest().build();
+    }
+
+    UserDomain createdUser = userService.createUser(userMapper.toDomain(userDto));
+    URI location =
+        ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(createdUser.getId())
+            .toUri();
+
+    return ResponseEntity.created(location).build();
   }
 
   @Override

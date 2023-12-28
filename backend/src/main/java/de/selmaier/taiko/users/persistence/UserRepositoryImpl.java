@@ -22,4 +22,9 @@ public class UserRepositoryImpl implements UserRepository {
   public Page<UserDomain> getAllUsers(Pageable pageable) {
     return userRepositoryJpa.findAll(pageable).map(userMapper::toDomain);
   }
+
+  @Override
+  public UserDomain createUser(UserDomain domain) {
+    return userMapper.toDomain(userRepositoryJpa.save(userMapper.toEntity(domain)));
+  }
 }
