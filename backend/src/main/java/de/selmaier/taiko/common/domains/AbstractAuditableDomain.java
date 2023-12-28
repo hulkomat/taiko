@@ -1,38 +1,31 @@
-package de.selmaier.taiko.common;
+package de.selmaier.taiko.common.domains;
 
 import java.time.Instant;
 import java.util.UUID;
-
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @MappedSuperclass
 @Data
+@EqualsAndHashCode(callSuper=true)
+@ToString(callSuper=true)
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class AbstractAuditableEntity extends AbstractBaseEntity {
-
-    @CreatedBy
+public class AbstractAuditableDomain extends AbstractBaseDomain {
+    
+    
     private UUID createdBy;
 
-    @CreatedDate
     private Instant createdAt;
 
-    @LastModifiedBy
     private UUID lastModifiedBy;
 
-    @LastModifiedDate
     private Instant lastModifiedAt;
-    
 }
