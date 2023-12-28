@@ -5,6 +5,4 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "de.selmaier.taiko")
-public class PersistenceConfig {
-    
-}
+public class PersistenceConfig {}
