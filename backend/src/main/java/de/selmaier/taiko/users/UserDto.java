@@ -1,4 +1,9 @@
 package de.selmaier.taiko.users;
 
-public record UserDto(String mail, String title, String firstName, String lastName) {
+import java.util.UUID;
+
+import lombok.Builder;
+
+@Builder
+public record UserDto(UUID id, String mail, String title, String firstName, String lastName) {
 } 
