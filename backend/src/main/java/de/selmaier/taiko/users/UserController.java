@@ -3,6 +3,7 @@ package de.selmaier.taiko.users;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,14 +25,14 @@ public interface UserController {
     public UserDto createUser(UserDto userDto);
 
     @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable UUID id);
+    public UserDto getUserById(@PathVariable @NonNull UUID id);
 
     @PutMapping("/{id}")
-    public UserDto replaceUser(@PathVariable UUID id, @RequestBody UserDto userDto);
+    public UserDto replaceUser(@PathVariable @NonNull UUID id, @RequestBody UserDto userDto);
 
     @PatchMapping("/{id}")
-    public UserDto updateUser(@PathVariable UUID id, @RequestBody UserDto userDto);
+    public UserDto updateUser(@PathVariable @NonNull UUID id, @RequestBody UserPatchDto userDto);
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable UUID id);
+    public void deleteUser(@PathVariable @NonNull UUID id);
 }
