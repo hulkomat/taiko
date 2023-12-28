@@ -1,9 +1,8 @@
 package de.selmaier.taiko.common.domains;
 
+import jakarta.persistence.MappedSuperclass;
 import java.time.Instant;
 import java.util.UUID;
-
-import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,19 +12,18 @@ import lombok.experimental.SuperBuilder;
 
 @MappedSuperclass
 @Data
-@EqualsAndHashCode(callSuper=true)
-@ToString(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AbstractAuditableDomain extends AbstractBaseDomain {
-    
-    
-    private UUID createdBy;
 
-    private Instant createdAt;
+  private UUID createdBy;
 
-    private UUID lastModifiedBy;
+  private Instant createdAt;
 
-    private Instant lastModifiedAt;
+  private UUID lastModifiedBy;
+
+  private Instant lastModifiedAt;
 }
