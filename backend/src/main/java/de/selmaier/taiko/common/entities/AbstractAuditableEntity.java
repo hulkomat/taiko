@@ -1,4 +1,4 @@
-package de.selmaier.taiko.common;
+package de.selmaier.taiko.common.entities;
 
 import java.time.Instant;
 import java.util.UUID;

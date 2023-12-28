@@ -1,6 +1,6 @@
 package de.selmaier.taiko.users;
 
-import de.selmaier.taiko.common.AbstractAuditableEntity;
+import de.selmaier.taiko.common.entities.AbstractAuditableEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
