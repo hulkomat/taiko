@@ -18,6 +18,16 @@ docker compose --env-file=local.env up -d --quiet-pull --wait --force-recreate -
 - `--wait` shows you a status screen until all services are healthy
 - `-d` for continue to run even if you close the terminal where you started the command
 
+To only build new frontend or backend images just run one of the following commands:
+
+```sh {"id":"01HJTE738X62QCGNCEJBWJ12VH"}
+docker build -t taiko-backend:latest ./backend
+```
+
+```sh {"id":"01HJTE7KKXFFH3FVQFM9SJTDQS"}
+docker build -t taiko-frontend:latest ./frontend
+```
+
 After starting the docker stack you can run the gauge tests by running the following command:
 
 ```sh {"id":"01HJN7AFANY8GS4JC4RCEH3JZE"}
@@ -27,3 +37,9 @@ npm test
 ```
 
 After a runthrough we can see the results when we open the `index.html` in `/gauge/reports/html-report`.
+
+To kill the whole stack run:
+
+```sh {"id":"01HJTE8RY5CFMWKSD035458QRH"}
+docker rmi -f postgres:latest taiko-backend:latest taiko-frontend:latest 
+```
