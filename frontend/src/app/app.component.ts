@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { RouterOutlet } from '@angular/router'
+import { LoginComponent } from './login/login.component'
 
 @Component({
   selector: 'app-root',
@@ -11,5 +11,5 @@ import { LoginComponent } from './login/login.component';
   styleUrl: './app.component.sass'
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'frontend'
 }
