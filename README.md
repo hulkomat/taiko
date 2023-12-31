@@ -11,6 +11,7 @@ Taiko for e2e testing. This is going to be a demo project and should show you in
 To run the whole application, with the database, the backend, and the frontend you can use the docker-compose.yml by simply running
 
 ```sh {"id":"01HJJJ2J91E5A4ET7DWXCH5A06"}
+rm -rf data && \
 docker compose --env-file=local.env up -d --quiet-pull --wait --force-recreate --remove-orphans
 ```
 
@@ -38,7 +39,9 @@ npm test
 
 After a runthrough we can see the results when we open the `index.html` in `/gauge/reports/html-report`.
 
-To kill the whole stack run:
+```sh {"id":"01HJTMNXP7GCHPZNRK5VHTMMF9"}
+To kill the containers, run:
+```
 
 ```sh {"id":"01HJTE8RY5CFMWKSD035458QRH"}
 docker rmi -f postgres:latest taiko-backend:latest taiko-frontend:latest 
