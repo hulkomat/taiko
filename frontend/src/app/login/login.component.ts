@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
 import { FormControl, ReactiveFormsModule } from '@angular/forms'
-import { type LoginService } from './login.service'
-import { type Credentials } from './credentials'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { LoginService } from './login.service'
+import type { Credentials } from './credentials'
 
 @Component({
   selector: 'app-login',
